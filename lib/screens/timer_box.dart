@@ -1,26 +1,36 @@
 import 'package:flutter/material.dart';
 
-class SetTimer {
-  late int _value;
+class SetMinute {
+  late int _minute;
 
-  SetTimer([int setMinute = 15]) {
-    _value = setMinute;
-  }
+  SetMinute([int givenValue = 0]) : _minute = givenValue;
 
-  String get asString => "$_value";
+  String get asString => '$_minute';
 
-  set value(int setMinute) => _value = setMinute;
+  set value(int giveValue) => _minute = giveValue;
 }
 
-class TimerBox extends StatefulWidget {
-  const TimerBox(setMinutes, {super.key});
+class TimeBox extends StatefulWidget {
+  const TimeBox({
+    Key? key,
+    required this.setTimer,
+  }) : super(key: key);
+
+  final SetMinute setTimer;
 
   @override
-  State<TimerBox> createState() => _TimerBoxState();
+  State<TimeBox> createState() => _TimeBoxState();
 }
 
-class _TimerBoxState extends State<TimerBox> {
+class _TimeBoxState extends State<TimeBox> {
   bool isSelected = false;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.setTimer.value =
+        10; // Example: Setting an initial value of 10 minutes
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,12 +51,12 @@ class _TimerBoxState extends State<TimerBox> {
             horizontal: 25,
           ),
           child: Text(
-            SetTimer(25).toString(),
+            widget.setTimer.asString,
             style: TextStyle(
               color: isSelected
                   ? Theme.of(context).colorScheme.background
                   : Colors.white,
-              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
+              fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
               fontWeight: FontWeight.w800,
             ),
           ),

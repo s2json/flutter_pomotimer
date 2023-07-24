@@ -179,11 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TimerBox(15),
-                TimerBox(20),
-                TimerBox(25),
-                TimerBox(30),
-                TimerBox(35),
+                TimeBox(setTimer: 30),
               ],
             ),
           ),
