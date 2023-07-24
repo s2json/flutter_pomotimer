@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:pomodoro/set_timers/set_timers.dart';
-
+import 'package:pomodoro/screens/timer_box.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,7 +13,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int totalSeconds = 0;
   bool isRunning = false;
-
 
   late Timer timer;
 
@@ -28,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         rounds = rounds + 1;
         isRunning = false;
-        totalSeconds = 60 * setMinutes(totalSeconds);
+        // totalSeconds = 60 * SetTimers(totalSeconds);
         if (rounds == totalRounds) {
           setState(() {
             totalSeconds = 60 * 5;
@@ -111,7 +109,6 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(
             height: 100,
           ),
-
           // Time counter
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -177,172 +174,16 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
 
           // Set Timer
-          SingleChildScrollView(
+          const SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TextButton(
-                  onPressed: () {},
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        color: Colors.white,
-                        width: 2,
-                      ),
-                      color: Theme.of(context).colorScheme.background,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Text(
-                        setMinutes(15).toString(),
-                        style: TextStyle(
-                          color: isSelected
-                              ? Theme.of(context).colorScheme.background
-                              : Colors.white,
-                          fontSize:
-                              Theme.of(context).textTheme.bodyMedium?.fontSize,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        color: Colors.white,
-                        width: 2,
-                      ),
-                      color: isSelected
-                          ? Colors.white
-                          : Theme.of(context).colorScheme.background,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Text(
-                        setMinutes(20).toString(),
-                        style: TextStyle(
-                          color: isSelected
-                              ? Theme.of(context).colorScheme.background
-                              : Colors.white,
-                          fontSize:
-                              Theme.of(context).textTheme.bodyMedium?.fontSize,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        color: Colors.white,
-                        width: 2,
-                      ),
-                      color: isSelected
-                          ? Colors.white
-                          : Theme.of(context).colorScheme.background,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Text(
-                        setMinutes(25).toString(),
-                        style: TextStyle(
-                          color: isSelected
-                              ? Theme.of(context).colorScheme.background
-                              : Colors.white,
-                          fontSize:
-                              Theme.of(context).textTheme.bodyMedium?.fontSize,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        color: Colors.white,
-                        width: 2,
-                      ),
-                      color: isSelected
-                          ? Colors.white
-                          : Theme.of(context).colorScheme.background,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Text(
-                        setMinutes(30).toString(),
-                        style: TextStyle(
-                          color: isSelected
-                              ? Theme.of(context).colorScheme.background
-                              : Colors.white,
-                          fontSize:
-                              Theme.of(context).textTheme.bodyMedium?.fontSize,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        color: Colors.white,
-                        width: 2,
-                      ),
-                      color: isSelected
-                          ? Colors.white
-                          : Theme.of(context).colorScheme.background,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Text(
-                        setMinutes(35).toString(),
-                        style: TextStyle(
-                          color: isSelected
-                              ? Theme.of(context).colorScheme.background
-                              : Colors.white,
-                          fontSize:
-                              Theme.of(context).textTheme.bodyMedium?.fontSize,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                /*
-                const SizedBox(
-                  width: 10,
-                ),
-                MinutesCard(setMinutes: 20),
-                SizedBox(
-                  width: 10,
-                ),
-                MinutesCard(setMinutes: 25),
-                SizedBox(
-                  width: 10,
-                ),
-                MinutesCard(setMinutes: 30),
-                SizedBox(
-                  width: 10,
-                ),
-                MinutesCard(setMinutes: 35),
-                */
+                TimerBox(15),
+                TimerBox(20),
+                TimerBox(25),
+                TimerBox(30),
+                TimerBox(35),
               ],
             ),
           ),
@@ -424,43 +265,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-/*
-class MinutesCard extends StatelessWidget {
-  const MinutesCard({
-    super.key,
-    required this.setMinutes,
-  });
-  final bool selected = false;
-  final int setMinutes;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {},
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color: Colors.white,
-            width: 2,
-          ),
-          color: selected
-              ? Colors.white
-              : Theme.of(context).colorScheme.background,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Text(
-            setMinutes.toString(),
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-*/
