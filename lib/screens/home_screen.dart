@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:pomodoro/set_timers/set_timers.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,11 +14,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int totalSeconds = 0;
   bool isRunning = false;
-  bool isSelected = false;
 
-  int setMinutes(int num) {
-    return num;
-  }
 
   late Timer timer;
 
@@ -30,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         rounds = rounds + 1;
         isRunning = false;
-        totalSeconds = 60 *setMinutes(totalSeconds);
+        totalSeconds = 60 * setMinutes(totalSeconds);
         if (rounds == totalRounds) {
           setState(() {
             totalSeconds = 60 * 5;
@@ -75,13 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  void onSelected() {
-    setState(() {
-      isSelected = true;
-      totalSeconds = 60;
-    });
-  }
-
+  // Timer minutes
   String formatHours(int seconds) {
     var duration = Duration(seconds: seconds);
     var hours = duration.toString().split(',').first.substring(2, 4);
@@ -89,6 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return hours;
   }
 
+// Timer seconds
   String formatMinutes(int seconds) {
     var duration = Duration(seconds: seconds);
     var minutes = duration.toString().split(',').first.substring(5, 7);
@@ -190,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextButton(
-                  onPressed: onSelected,
+                  onPressed: () {},
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -198,9 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.white,
                         width: 2,
                       ),
-                      color: isSelected
-                          ? Colors.white
-                          : Theme.of(context).colorScheme.background,
+                      color: Theme.of(context).colorScheme.background,
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(15),
@@ -219,7 +210,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 TextButton(
-                  onPressed: onSelected,
+                  onPressed: () {},
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -248,7 +239,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 TextButton(
-                  onPressed: onSelected,
+                  onPressed: () {},
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -277,7 +268,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 TextButton(
-                  onPressed: onSelected,
+                  onPressed: () {},
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -306,7 +297,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 TextButton(
-                  onPressed: onSelected,
+                  onPressed: () {},
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
