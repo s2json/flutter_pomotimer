@@ -14,6 +14,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int totalSeconds = 0;
   bool isRunning = false;
 
+  late var timer1 = SetTimer;
+
   late Timer timer;
 
   int rounds = 0;
@@ -179,7 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TimeBox(setTimer: 30),
+                TimeBox(),
               ],
             ),
           ),
