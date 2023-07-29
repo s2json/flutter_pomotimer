@@ -1,18 +1,32 @@
 import 'package:flutter/material.dart';
 
-class SetTimers extends StatefulWidget {
-  const SetTimers({super.key});
+class TimeBox extends StatefulWidget {
+  const TimeBox({super.key});
 
   @override
-  State<SetTimers> createState() => _SetTimersState();
+  State<TimeBox> createState() => _TimeBoxState();
 }
 
-class _SetTimersState extends State<SetTimers> {
-  String setTime(int minute) {
-    return minute.toString();
+class SetTimer {
+  late int _minute;
+  late int givenTimer;
+
+  SetTimer({givenTimer}) {
+    _minute = givenTimer;
   }
 
+  int get() => _minute;
+
+  String get asString => '$_minute';
+
+  set({int givenTimer = 15}) {
+    _minute = givenTimer;
+  }
+}
+
+class _TimeBoxState extends State<TimeBox> {
   bool isSelected = false;
+  late final timeToSet = SetTimer();
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +42,12 @@ class _SetTimersState extends State<SetTimers> {
           color: Theme.of(context).colorScheme.background,
         ),
         child: Padding(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.symmetric(
+            vertical: 10,
+            horizontal: 25,
+          ),
           child: Text(
-            setTime(15),
+            timeToSet.asString,
             style: TextStyle(
               color: isSelected
                   ? Theme.of(context).colorScheme.background

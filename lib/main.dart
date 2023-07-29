@@ -7,7 +7,6 @@ void main() {
 
 class Pomodoro extends StatelessWidget {
   const Pomodoro({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
